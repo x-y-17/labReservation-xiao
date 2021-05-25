@@ -1,0 +1,73 @@
+.wel{
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    background-image: linear-gradient(
+      135deg,
+    hsl(170deg,80%,70%),
+    hsl(190deg,80%,70%),
+    hsl(250deg,80%,70%),
+    hsl(320deg,80%,70%));
+    background-size: 200% 200%;
+    animation: backgroundMove 4s infinite alternate;
+  }
+  @keyframes backgroundMove {
+    from{
+      background-position: 0% 0%;
+    }
+    to{
+      background-position: 100% 100%;
+    }
+  }
+  .text1 {
+    transition: 2s;
+    margin-top: 100px;
+    display: inline-block;
+    color: rgba(236 ,67 ,22 ,0.45);
+    font: bold 80px "微软雅黑";
+    background: linear-gradient(100deg, rgba(255, 255, 255, 0), #ffffff 80px, rgba(255, 255, 255, 0) 160px);
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    animation: move 4s infinite;
+  }
+  @keyframes move {
+    from {
+      background-position: 0px 0;
+    }
+    to {
+      background-position: 1067px 0;
+    }
+  }
+  .login{
+    position: relative;
+    display: block;
+    margin:150px auto;
+    width: 12rem;
+    height: 5rem;
+    border-radius: 5rem;
+    background-color:black; 
+    color: white;
+    font-weight: bold;
+    font-size: 35px;
+    box-shadow: 0 8px 20px black;
+    border:  1px solid black;
+    cursor: pointer;
+    transition: 1s;
+  }
+   
+  .active{
+    width: 5rem;
+    color: transparent;
+  }
+
+  .loading{
+      opacity: 1;
+      transition: .5s;
+  }
+  .active2{
+      position: absolute;
+      
+      width: 70%;
+      height: 40%;
+      background-color: white;
+  }
