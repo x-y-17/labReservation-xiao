@@ -4,7 +4,10 @@
       <h1>我是Header</h1>
     </div>
     <siderbar class="sideb" />
-    <router-view class="rv"/>
+    <div class="rv">
+      <router-view />
+    </div>
+    
   </div>
 </template>
 <script lang="ts">

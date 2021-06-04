@@ -21,6 +21,8 @@ axios.interceptors.response.use(
   resp => {
     // 从响应获取响应体对象
     const data: ResultVO = resp.data;
+    console.log("拦截器拦截");
+    
     console.log(data);
     // 全局处理后端返回的异常信息。即，业务状态码不是200
     if (data.code != 200) {

@@ -1,26 +1,22 @@
 <template>
-    <el-form
-      :label-position="labelPosition"
-      label-width="80px"
-      :model="teacher"
-    >
-      <el-form-item label="教师姓名">
-        <el-input v-model="teacher.name"></el-input>
-      </el-form-item>
-      <br />
-      <el-form-item label="教师编号">
-        <el-input v-model="teacher.number"></el-input>
-      </el-form-item>
-      <el-form-item label="教师职称">
-        <el-input v-model="teacher.title"></el-input>
-      </el-form-item>
-      <el-button
-        @click="submit"
-        type="success"
-        icon="el-icon-check"
-        circle
-      ></el-button>
-    </el-form>
+  <el-form :label-position="labelPosition" label-width="80px" :model="teacher">
+    <el-form-item label="教师姓名">
+      <el-input v-model="teacher.name"></el-input>
+    </el-form-item>
+    <br />
+    <el-form-item label="教师编号">
+      <el-input v-model="teacher.number"></el-input>
+    </el-form-item>
+    <el-form-item label="教师职称">
+      <el-input v-model="teacher.title"></el-input>
+    </el-form-item>
+    <el-button
+      @click="submit"
+      type="success"
+      icon="el-icon-check"
+      circle
+    ></el-button>
+  </el-form>
 </template>
 
 <script lang="ts">
@@ -43,11 +39,21 @@ export default defineComponent({
       number: "",
       title: "",
     });
+    let flag = true;
+    const teaList = store.state.teacherList;
     const submit = () => {
+      teaList?.forEach((t) => {
+        if (teacher.value.number == t.number) {
+          flag = false;
+          alert("教师编号重复，请重新输入")
+        }
+      });
       if (
-        typeof teacher.value.name == "string" &&
-        typeof teacher.value.number == "string" &&
-        typeof teacher.value.title == "string"
+        (flag ==
+          true &&
+          typeof teacher.value.name == "string" &&
+          typeof teacher.value.number == "string" &&
+          typeof teacher.value.title == "string")
       ) {
         store.commit(types.LIST_TEACHERS, {
           name: teacher.value.name,
