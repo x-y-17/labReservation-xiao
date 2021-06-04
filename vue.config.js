@@ -28,6 +28,9 @@ module.exports = {
           jQuery: 'jquery',
           'window.jQuery': 'jquery'
       }])
+  },
+  configureWebpack: {
+    devtool: 'source-map'
   }
   };
   

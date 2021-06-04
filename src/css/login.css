@@ -7,9 +7,6 @@
   -o-transform: translateZ(0);
   transform: translateZ(0);
 }
-[v-cloak] {
-  display: none;
-}
 .login-box .user-box {
   position: relative;
   margin-top: 40px;
@@ -51,6 +48,7 @@
   margin-top: 40px;
   margin-left: 95px;
   letter-spacing: 4px;
+  cursor: pointer;
 }
 .login-box a:hover {
   background: #03e9f4;

@@ -31,14 +31,12 @@ export default defineComponent({
   mounted(){
     var _this = this;
     var starArr = document.querySelectorAll(".star")
-    console.log(_this)
-    console.log(starArr)
     starArr.forEach(item => {
       let speed = 0.3 + (Math.random() * 1);
       let thisDistance = _this.distance + (Math.random() * 300);
       item.style.transformOrigin = `0 0 ${thisDistance}px`;
       item.style.transform = `translate3d(0,0,-${thisDistance}px) rotateY(${(Math.random() * 360)}deg) rotateX(${(Math.random() * -50)}deg) scale(${speed},${speed})`
- 
+
     })
   }
 });

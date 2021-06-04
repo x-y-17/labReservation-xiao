@@ -36,9 +36,7 @@ export default defineComponent({
     const store = useStore<State>();
     const flag = ref(store.state.isLogin);
     const login = () => {
-      console.log("点击发生");
       store.dispatch(BACKEND_LOGIN, user.value);
-      router.push("/main");
     };
     // watch(flag,(newValue,oldValue)=>{
     //   console.log(flag.value);

@@ -2,3 +2,5 @@ export const BACKEND_LOGIN = "BACKEND_LOGIN";
 export const SET_ROLE = "SET_ROLE";
 export const SET_MENULIST = "SET_MENULIST";
 export const UPDATE_EXCEPTION = "GET_EXCEPTION";
+export const BACKEND_TEACHERS = "BACKEND_TEACHERS";
+export const LIST_TEACHERS = "LIST_TEACHERS";

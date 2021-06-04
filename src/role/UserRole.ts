@@ -6,16 +6,33 @@ const routes: Array<RouteRecordRaw> = [
     {
         name: "main",
         path: "/main",
-        component: () => import("@/views/main/Main.vue"),
+        component: () => import("@/views/Main.vue"),
         children: [
             {
-                path: "",
-                component: () => import("@/views/manage.vue")
+                path: "/labManage",
+                component: ()=> import("@/views/labManage.vue")
             },
-            // {
-            //     path: "/p1",
-            //     component: ()=> import("@/views/")
-            // }
+            {
+              path: "/teacherManage",
+              component: ()=> import("@/views/teacherManage.vue"),
+              children:[
+                {
+                  path: "add",
+                  name: 'add',
+                  component: () => import("@/components/teacherAdd.vue")
+                },
+                {
+                  path: "",
+                  name: 'edit',
+                  component: () => import("@/components/teacherEdit.vue")
+                },
+                {
+                  path: "delete",
+                  name: 'delete',
+                  component: () => import("@/components/teacherDelete.vue")
+                }
+              ]
+          },
         ]
     },
     {
@@ -29,8 +46,12 @@ const menuList: Menu[] = [
       title: "管理员管理模块",
       children: [
         {
-          title: "管理员管理",
-          path: "/p1"
+          title: "实验室管理",
+          path: "/labManage"
+        },
+        {
+          title:"教师管理",
+          path: "/teacherManage"
         }
       ]
     }
