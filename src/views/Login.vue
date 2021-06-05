@@ -3,7 +3,7 @@
 </style>
 <template>
   <div class="login-box">
-    <form>
+    <form @keydown.enter="login()">
       <div class="user-box">
         <input type="text" v-model="user.number" />
         <label>Number</label>
@@ -12,7 +12,7 @@
         <input type="password" v-model="user.password" />
         <label>Password</label>
       </div>
-      <a @click="login()">
+      <a @click="login()" >
         <span></span>
         <span></span>
         <span></span>
@@ -28,13 +28,15 @@ import { useStore } from "vuex";
 import { defineComponent, ref, watch } from "vue";
 import { BACKEND_LOGIN } from "@/store/VuexTypes";
 import { State } from "@/store";
-import { useRouter } from "vue-router";
+
 export default defineComponent({
   setup() {
     const user = ref({ number: "", password: "" });
-    const router = useRouter();
     const store = useStore<State>();
-    const flag = ref(store.state.isLogin);
+    const enter = ()=>{
+      console.log("enter");
+      
+    }
     const login = () => {
       store.dispatch(BACKEND_LOGIN, user.value);
     };
@@ -46,6 +48,7 @@ export default defineComponent({
     //   }
     // })
     return {
+      enter,
       user,
       login,
     };

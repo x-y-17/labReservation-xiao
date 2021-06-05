@@ -5,3 +5,5 @@ export const UPDATE_EXCEPTION = "GET_EXCEPTION";
 export const BACKEND_TEACHERS = "BACKEND_TEACHERS";
 export const LIST_TEACHERS = "LIST_TEACHERS";
 export const DELETE_TEACHER =  "DELETE_TEACHER";
+export const GET_LABLIST = "GET_LABLIST";
+export const SET_LABLIST =  "SET_LABLIST";

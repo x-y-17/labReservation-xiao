@@ -3,14 +3,16 @@ import * as types from "./VuexTypes";
 import { Menu } from "@/role/Menu"
 import axios from "@/axios"
 import router from "@/router";
-import { listTeacher } from "@/datasource/DataSource";
-import { Teacher } from "@/datasource/Type"
+import { listLab } from "@/datasource/DataSource";
+import { Teacher } from "@/datasource/Type";
+import { Lab } from "@/datasource/Type";
 import { ResultVO } from "@/mock";
 export interface State {
   role?: number | null;
   menuList?: Menu[];
   teacherList?: Teacher[];
   isLogin?: boolean;
+  labList?: Lab[];
   exception: string;
 }
 
@@ -19,7 +21,8 @@ const state: State = {
   exception: "Error!",
   menuList: [],
   teacherList: [],
-  isLogin: false
+  isLogin: false,
+  labList: []
 };
 
 
@@ -31,15 +34,14 @@ const myMutations = {
     state.menuList = data;
   },
   [types.UPDATE_EXCEPTION]: (state: State, data: string) => (state.exception = data),
-  [types.LIST_TEACHERS]: (state: State, data: Teacher) => (state.teacherList?.push(data))
+  [types.LIST_TEACHERS]: (state: State, data: Teacher) => (state.teacherList?.push(data)),
+  [types.SET_LABLIST]: (state: State, data: Lab[]) => (state.labList = data),
 }
 
 const myActions: ActionTree<State, State> = {
   [types.BACKEND_LOGIN]: async ({ commit, state }, user: any) => {
     const resp = await axios.post<ResultVO>("login", user);
-
     const token: string = resp.headers.token;
-
     if (token) {
       sessionStorage.setItem("token", token);
       sessionStorage.setItem("role", resp.data.data.role);
@@ -69,6 +71,13 @@ const myActions: ActionTree<State, State> = {
     //   state.teacherList?.push(teacher)
     // }
   },
+  [types.GET_LABLIST]: async ({ commit }) => {
+    // const resp = await axios.get("api/lablist");
+    const resp = await axios.get("lablist");
+    commit(types.SET_LABLIST, resp.data.data.labs);
+    
+    
+  }
 }
 
 
