@@ -20,13 +20,11 @@ export default defineComponent({
   margin: 0;
   padding: 0;
 }
- html,body {
+html,body{
   height: 100%;
 }
 #app{
   height: 100%;
 }
-#app router-view{
-  height: 100%;
-}
+
 </style>

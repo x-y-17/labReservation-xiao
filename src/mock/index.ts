@@ -37,6 +37,134 @@ for(let i = 1;i<19;i++){
     }
   }
 }
+mock.onPost('deleteLabs').reply(c=>{
+  const data =c.data;
+  if(data){
+    resulVO.data = data;
+    console.log("mock-deleteLabs",data);
+    console.log("成功向deleteLabs提交删除信息");
+    
+  return [200,resulVO]
+  }
+  resulVO.code = 401;
+  resulVO.message = "提交错误";
+  return [200, resulVO];
+})
+mock.onPost('updateLabs').reply(c=>{
+  const data =c.data;
+  if(data){
+    resulVO.data = data;
+    console.log("mock-updateLabs",data);
+    console.log("成功向updateLabs提交修改信息");
+    
+  return [200,resulVO]
+  }
+  resulVO.code = 401;
+  resulVO.message = "提交错误";
+  return [200, resulVO];
+})
+mock.onPost('addLabs').reply(c=>{
+  const data =c.data;
+  if(data){
+    resulVO.data = data;
+    console.log("mock-addLabs",data);
+    console.log("成功向addLabs提交修改信息");
+    
+  return [200,resulVO]
+  }
+  resulVO.code = 401;
+  resulVO.message = "提交错误";
+  return [200, resulVO];
+})
+mock.onPost('deleteTeachers').reply(c =>{
+  const data =c.data;
+  if(data){
+    resulVO.data = data;
+    console.log("mock-deleteTeachers",data);
+    console.log("成功向deleteTeachers提交删除信息");
+    
+  return [200,resulVO]
+  }
+  resulVO.code = 401;
+  resulVO.message = "提交错误";
+  return [200, resulVO];
+})
+
+mock.onPost('updateTeacherPassword').reply(c =>{
+  const data =c.data;
+  if(data){
+    resulVO.data = data;
+    console.log("mock-updateTeacherPassword",data);
+    console.log("成功向uupdateTeacherPassword提交修改信息");
+    
+  return [200,resulVO]
+  }
+  resulVO.code = 401;
+  resulVO.message = "提交错误";
+  return [200, resulVO];
+})
+
+mock.onPost('updateTeachers').reply(c =>{
+  const data =c.data;
+  if(data){
+    resulVO.data = data;
+    console.log("mock-updateTeachers",data);
+    console.log("成功向updateTeachers提交修改信息");
+    
+  return [200,resulVO]
+  }
+  resulVO.code = 401;
+  resulVO.message = "提交错误";
+  return [200, resulVO];
+})
+
+mock.onPost('addTeachers').reply(c =>{
+  const data =c.data;
+  if(data){
+    resulVO.data = data;
+    console.log("mock-Add",data);
+    console.log("成功向addTeachers提交信息");
+    
+  return [200,resulVO]
+  }
+  resulVO.code = 401;
+  resulVO.message = "提交错误";
+  return [200, resulVO];
+})
+mock.onGet('getTeachers').reply(200,{ 
+  code:200,
+  data:{
+    teachers: [
+      {
+        name: "张伟",
+        title: "教授",
+        number: "100",
+      },
+      {
+        name: "朱东坡",
+        title: "副教授",
+        number: "101",
+      },
+      {
+        name: "张剑腾",
+        title: "教授",
+        number: "102",
+      },
+    ]
+  }
+})
+mock.onPost('submitLablist').reply(c =>{
+  const data = c.data;
+  if(data){
+    resulVO.data = data;
+    console.log("mock",data);
+  return [200,resulVO]
+  }
+  
+  resulVO.code = 401;
+  resulVO.message = "提交错误";
+  return [200, resulVO];
+})
 mock.onGet('lablist').reply(200, {
   code: 200,
   data: {

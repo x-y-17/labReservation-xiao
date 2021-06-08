@@ -1,14 +1,13 @@
 <template>
   <el-table :data="tableData" style="width: 100%" max-height="250">
-    <el-table-column prop="name" label="教师姓名" width="120"></el-table-column>
     <el-table-column
       prop="number"
-      label="教师编号"
+      label="实验室编号"
       width="120"
     ></el-table-column>
     <el-table-column
-      prop="title"
-      label="教师职称"
+      prop="computerNumber"
+      label="实验室机器数量"
       width="120"
     ></el-table-column>
     <el-table-column fixed="right" label="操作" width="120">
@@ -31,14 +30,15 @@ export default defineComponent({
     const store = useStore<State>();
     const router = useRouter();
     const tableData = computed(() => {
-      return store.state.teacherList;
+      return store.state.labList;
     });
+    console.log(tableData);
     
     const EditRow = (i: any) => {
       console.log(i);
       router.push({
-        path: "/teacherManage/edit",
-        query: { teacherNum: i },
+        path: "/labManage/edit",
+        query: { labNum: i },
       });
     };
     return {

@@ -23,7 +23,6 @@
 import { useStore } from "vuex";
 import { defineComponent, ref } from "vue";
 import { State } from "@/store";
-import { BACKEND_TEACHERS } from "@/store/VuexTypes";
 import * as types from "@/store/VuexTypes";
 import { Teacher } from "@/datasource/Type";
 export default defineComponent({
@@ -41,6 +40,8 @@ export default defineComponent({
     });
     let flag = true;
     const teaList = store.state.teacherList;
+    console.log(teaList);
+    
     const submit = () => {
       teaList?.forEach((t) => {
         if (teacher.value.number == t.number) {
@@ -60,8 +61,10 @@ export default defineComponent({
           number: teacher.value.number,
           title: teacher.value.title,
         } as Teacher);
+        console.log("commit",teaList);
+        
       }
-      store.dispatch(BACKEND_TEACHERS, teacher.value);
+      store.dispatch(types.ADD_TEACHERS, teacher.value);
     };
     return {
       teacher,

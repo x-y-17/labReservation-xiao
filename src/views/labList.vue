@@ -36,7 +36,6 @@ import { toRaw} from '@vue/reactivity' //将Proxy代理对象转换为源对象
 export default defineComponent({
     setup() {
         const store =useStore<State>();
-        store.dispatch(types.GET_LABLIST);
         const tableData = computed(() =>{
             return store.state.labList});
         const OneReserve = (scope : any) => {

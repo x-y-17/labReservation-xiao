@@ -1,6 +1,7 @@
 <template>
-  <div>
-    <el-menu :default-active="this.$route.path" router mode="horizontal">
+  <div class="rvwrap">
+    <div class="elmenu">
+    <el-menu :default-active="this.$route.path" router mode="horizontal" class="elmenuinner">
       <el-menu-item
         v-for="(item, i) in teachernavList"
         :key="i"
@@ -9,9 +10,10 @@
         {{ item.navItem }}
       </el-menu-item>
     </el-menu>
-
-    <hr />
-    <router-view />
+    </div>
+    <div class="rv2">
+       <router-view />
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -41,3 +43,7 @@ export default defineComponent({
   },
 });
 </script>
+
+<style>
+  @import "../css/teacherManage.css";
+</style>

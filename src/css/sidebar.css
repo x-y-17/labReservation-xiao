@@ -2,3 +2,9 @@
   margin: 0;
   padding: 0;
 }
+.sbback {
+  background-color: #545c64;
+}
+.el-menu {
+  border: 0;
+}

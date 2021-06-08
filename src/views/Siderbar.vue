@@ -1,15 +1,24 @@
 <template>
-  <div>
-    <template v-for="(menu1, m1index) in menuList" :key="`m1-${m1index}`">
-      <h3>{{ menu1.title }}</h3>
-      <template v-if="menu1?.children.length > 0">
-        <ul>
-          <li v-for="(menu2, m2index) in menu1.children" :key="`m2-${m2index}`">
-            <router-link :to="menu2?.path">{{ menu2.title }}</router-link>
-          </li>
-        </ul>
-      </template>
-    </template>
+  <div class="sbback">
+    <el-menu
+      router
+      :uniqueOpened="true"
+      class="el-menu-vertical-demo"
+      @open="handleOpen()"
+      @close="handleClose()"
+      background-color="#545c64"
+      text-color="#fff"
+      active-text-color="#ffd04b"
+    ><!---  :default-active="$route.path" 想让它随着子路由变化仍然亮-->
+      <el-menu-item
+        v-for="(m, mindex) in menuList.children"
+        :key="mindex"
+        :index="m.path"
+      >
+        <i class="el-icon-menu"></i>
+        <template #title>{{ m.title }}</template>
+      </el-menu-item>
+    </el-menu>
   </div>
 </template>
 <script lang="ts">
@@ -19,25 +28,26 @@ import { State } from "@/store";
 
 export default defineComponent({
   methods: {
-      handleOpen(key:any, keyPath:any) {
-        console.log(key, keyPath);
-      },
-      handleClose(key:any, keyPath:any) {
-        console.log(key, keyPath);
-      }
+    handleOpen(key: any, keyPath: any) {
+      console.log(key, keyPath);
     },
+    handleClose(key: any, keyPath: any) {
+      console.log(key, keyPath);
+    },
+  },
   setup() {
     // const store = useStore<State>();
     // const menuList = store.state.menuList;
     const state: State = useStore().state;
     const menuList = state.menuList;
+
     return {
-      menuList
+      menuList,
     };
   },
 });
 </script>
 <style scoped>
-  @import "../css/sidebar.css";
+@import "../css/sidebar.css";
 </style>
 

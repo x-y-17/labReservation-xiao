@@ -1,7 +1,7 @@
 import { RouteRecordRaw } from "vue-router";
 import { Menu } from "./Menu";
 import router from "@/router/index";
-import component from "*.vue";
+
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -35,7 +35,7 @@ const routes: Array<RouteRecordRaw> = [
   }
 ]
 
-const menuList: Menu[] = [
+const menuList: Menu = 
   {
     title: "教师模块",
     children: [
@@ -49,7 +49,7 @@ const menuList: Menu[] = [
       }
     ]
   }
-];
+;
 
 
 export function setUserRole() {

@@ -35,7 +35,10 @@ const myMutations = {
   },
   [types.UPDATE_EXCEPTION]: (state: State, data: string) => (state.exception = data),
   [types.LIST_TEACHERS]: (state: State, data: Teacher) => (state.teacherList?.push(data)),
-  [types.SET_LABLIST]: (state: State, data: Lab[]) => (state.labList = data),
+  [types.GET_LABLIST]: (state: State, data: Lab[]) => (state.labList = data),
+  [types.GET_TEACHERS]: (state:State,data: Teacher[]) =>(state.teacherList = data),
+  [types.ADD_LAB]:(state:State,data:Lab) =>(state.labList?.push(data))
+  // [types.UPDATE_TEACHER]:(state:State,data:Teacher) => ()
 }
 
 const myActions: ActionTree<State, State> = {
@@ -62,21 +65,58 @@ const myActions: ActionTree<State, State> = {
     }
   },
   [types.DELETE_TEACHER]: async ({ state }, number: any) => {
-    await axios.post("/api/admin/deleteTeacher", number);
+    const resp = await axios.post("deleteTeachers", number);
+    if(resp.status == 200){
+      alert("删除成功")
+    }
   },
-  [types.BACKEND_TEACHERS]: async ({ commit, state }, teacher: any) => {
-    const resp = await axios.post("/api/admin/teachers", teacher);
+  [types.ADD_TEACHERS]: async ({ commit, state }, teacher: any) => {
+    const resp = await axios.post("addTeachers", teacher);
+    console.log("ADD",resp.data.data);
+    commit(types.LIST_TEACHERS,resp.data.data)
     // if(resp.status == 200){
     //   teacher.id = resp.data.data.id;
     //   state.teacherList?.push(teacher)
     // }
-  },
+  },//添加教师信息
   [types.GET_LABLIST]: async ({ commit }) => {
     // const resp = await axios.get("api/lablist");
     const resp = await axios.get("lablist");
-    commit(types.SET_LABLIST, resp.data.data.labs);
-    
-    
+    console.log("lablist",resp.data.data.labs);
+    commit(types.GET_LABLIST, resp.data.data.labs); 
+  },
+  [types.SUBMIT_LABLIST]: async ({state},labList: any)=>{
+    const resp = await axios.post<ResultVO>("submitLablist",labList);
+  },
+  [types.GET_TEACHERS]: async ({commit,state},teacherList: any)=>{
+    const resp = await axios.get<ResultVO>("getTeachers");
+    console.log(resp.data.data.teachers);
+    commit(types.GET_TEACHERS,resp.data.data.teachers);
+  },
+  [types.UPDATE_TEACHER]: async ({commit,state},teacherUpdate:any)=>{
+    const resp = await axios.post<ResultVO>("updateTeachers",teacherUpdate);
+    if(resp.status == 200){
+      alert("修改成功")
+    }
+    console.log("update_teacher",resp.data.data);
+  },//修改教师信息（姓名，职称)
+  [types.UPDATE_TEACHER_PASSWORD]: async ({commit},password:string)=>{
+    const resp = await axios.post<ResultVO>("updateTeacherPassword",password);
+    console.log("update_teacher_password",resp.data.data);
+  },
+  [types.ADD_LAB]: async({commit,state},lab:any)=>{
+    const resp = await axios.post<ResultVO>("addLabs",lab);
+    console.log("add_lab",resp.data.data);
+  },
+  [types.UPDATE_LAB]: async({state},lab:any)=>{
+    const resp = await axios.post<ResultVO>("updateLabs",lab);
+    console.log("updateLabs",resp.data.data);
+  },
+  [types.DELETE_LAB]: async ({state},number:any)=>{
+    const resp = await axios.post("deleteLabs", number);
+    if(resp.status == 200){
+      alert("删除成功")
+    }
   }
 }
 

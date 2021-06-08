@@ -5,29 +5,19 @@
 }
 #mainwrap {
   height: 100%;
-  width: auto;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
-}
-.header,
-.sideb,
-.rv {
-  display: block;
 }
 .header {
-  flex-shrink: 0;
   width: 100%;
-  min-height: 170px;
-  border: 1px solid pink;
+  height: 20%;
 }
 .sideb {
-  height: 100%;
   flex: 2;
-  border: 1px solid red;
+  height: 80%;
 }
 .rv {
+  height: 80%;
   flex: 8;
-  height: 100%;
-  border: 1px solid black;
 }
