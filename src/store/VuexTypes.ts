@@ -14,3 +14,7 @@ export const UPDATE_TEACHER_PASSWORD = "UPDATE_TEACHER_PASSWORD";
 export const ADD_LAB = "ADD_LAB";
 export const UPDATE_LAB = "UPDATE_LAB";
 export const DELETE_LAB = "DELETE_LAB";
+export const GET_COURSES = "GET_COURSES";
+export const ADD_COURSE = "ADD_COURSE";
+export const DELETE_COURSE = "DELETE_COURSE";
+export const UPDATE_COURSE ="UPDATE_COURSE";

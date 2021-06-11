@@ -19,13 +19,43 @@ const routes: Array<RouteRecordRaw> = [
           },
           {
             path: "oneReserve",
-            component: ()=> import("@/components/labOneReserve.vue")
+            component: () => import("@/components/labOneReserve.vue")
+          },
+          {
+            path: "showSchedule",
+            component: () => import("@/components/showSchedule.vue")
           }
         ]
       },
       {
         path: "/courseManage",
         component: () => import("@/views/courseManage.vue"),
+        children: [
+          {
+            path: "add",
+            component: () => import("@/components/courseAdd.vue")
+          },
+          {
+            path: "",
+            component: () => import("@/components/courseEdit.vue")
+          }, 
+          {
+            path: "edit",
+            component: () => import("@/components/courseEditSon.vue")
+          },
+          {
+            path: "delete",
+            component: () => import("@/components/courseDelete.vue")
+          },
+          {
+            path: "courseLabList",
+            component: () => import("@/components/courseLabList.vue")
+          },
+          {
+            path: "courseLabReserve",
+            component: () => import("@/components/courseLabReserve.vue")
+          }
+        ]
       },
     ]
   },
@@ -35,21 +65,21 @@ const routes: Array<RouteRecordRaw> = [
   }
 ]
 
-const menuList: Menu = 
-  {
-    title: "教师模块",
-    children: [
-      {
-        title: "课程实验管理",
-        path: "/courseManage"
-      },
-      {
-        title: "实验室预约",
-        path: "/labReserve"
-      }
-    ]
-  }
-;
+const menuList: Menu =
+{
+  title: "教师模块",
+  children: [
+    {
+      title: "课程实验管理",
+      path: "/courseManage"
+    },
+    {
+      title: "实验室预约",
+      path: "/labReserve"
+    }
+  ]
+}
+  ;
 
 
 export function setUserRole() {

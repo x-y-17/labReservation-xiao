@@ -19,10 +19,15 @@ export default defineComponent({
   components: { siderbar, header1 },
   setup() {
     const store = useStore();
-    store.dispatch(types.GET_TEACHERS);
     store.dispatch(types.GET_LABLIST);
-    console.log("Main",store.state.labList);
-    
+    if (sessionStorage.getItem("role") == "admin") {
+      store.dispatch(types.GET_TEACHERS);
+    }
+    if(sessionStorage.getItem("role") == "teacher"){
+      store.dispatch(types.GET_COURSES);
+    }
+    console.log("Main", store.state.labList);
+
     return;
   },
 });

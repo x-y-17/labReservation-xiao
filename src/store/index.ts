@@ -4,7 +4,7 @@ import { Menu } from "@/role/Menu"
 import axios from "@/axios"
 import router from "@/router";
 import { listLab } from "@/datasource/DataSource";
-import { Teacher } from "@/datasource/Type";
+import { Teacher,Course } from "@/datasource/Type";
 import { Lab } from "@/datasource/Type";
 import { ResultVO } from "@/mock";
 export interface State {
@@ -14,6 +14,7 @@ export interface State {
   isLogin?: boolean;
   labList?: Lab[];
   exception: string;
+  courses?: Course[];
 }
 
 const state: State = {
@@ -22,7 +23,8 @@ const state: State = {
   menuList: [],
   teacherList: [],
   isLogin: false,
-  labList: []
+  labList: [],
+  courses: [],
 };
 
 
@@ -37,7 +39,9 @@ const myMutations = {
   [types.LIST_TEACHERS]: (state: State, data: Teacher) => (state.teacherList?.push(data)),
   [types.GET_LABLIST]: (state: State, data: Lab[]) => (state.labList = data),
   [types.GET_TEACHERS]: (state:State,data: Teacher[]) =>(state.teacherList = data),
-  [types.ADD_LAB]:(state:State,data:Lab) =>(state.labList?.push(data))
+  [types.ADD_LAB]:(state:State,data:Lab) =>(state.labList?.push(data)),
+  [types.GET_COURSES]:(state:State,data:Course[])=>(state.courses = data),
+  [types.ADD_COURSE]:(state:State,data:Course)=>(state.courses?.push(data)),
   // [types.UPDATE_TEACHER]:(state:State,data:Teacher) => ()
 }
 
@@ -56,7 +60,8 @@ const myActions: ActionTree<State, State> = {
         router.push("/main");
       }
       if (resp.data.data.role == 'teacher') {
-        const { setUserRole } = await import("@/role/TeacherRole")
+        sessionStorage.setItem("teacherNum",resp.data.data.teacherNum);
+        const { setUserRole } = await import("@/role/TeacherRole");
         const menuList = setUserRole();
         commit(types.SET_MENULIST, menuList);
         state.isLogin = true;
@@ -87,6 +92,9 @@ const myActions: ActionTree<State, State> = {
   },
   [types.SUBMIT_LABLIST]: async ({state},labList: any)=>{
     const resp = await axios.post<ResultVO>("submitLablist",labList);
+    if(resp.status ==200){
+      alert("预约成功")
+    }
   },
   [types.GET_TEACHERS]: async ({commit,state},teacherList: any)=>{
     const resp = await axios.get<ResultVO>("getTeachers");
@@ -117,6 +125,39 @@ const myActions: ActionTree<State, State> = {
     if(resp.status == 200){
       alert("删除成功")
     }
+  },
+  [types.GET_COURSES]:async ({commit},courses: Course[])=>{
+    const resp = await axios.get('/getCourses');
+    const courseList : Course[] = [];
+    const teacherNum = sessionStorage.getItem('teacherNum');//获取sessionStorage中的教师编号
+    console.log("/getCourses",resp.data.data.courses);
+    resp.data.data.courses.forEach( (c:any) => {     
+      if(c.teacherNum == teacherNum){
+        courseList.push(c)
+      }
+    });
+    console.log(courseList);
+    courses = courseList;
+    console.log("courses:",courses);
+    
+    commit(types.GET_COURSES,courses);
+  },
+  [types.ADD_COURSE]: async({commit},course:Course)=>{
+    const resp = await axios.post<ResultVO>("addCourses",course);
+    if(resp.status == 200){
+      alert("添加成功")
+    }
+    console.log("add_course",resp.data.data);
+  },
+  [types.DELETE_COURSE]: async({state},number:any)=>{
+    const resp = await axios.post("deleteCourses",number)
+    if(resp.status == 200){
+      alert("删除成功")
+    }
+  },
+  [types.UPDATE_COURSE]: async({state},course:Course)=>{
+    const resp = await axios.post<ResultVO>("updateCourses",course);
+    console.log("updateCourses",resp.data.data);
   }
 }
 

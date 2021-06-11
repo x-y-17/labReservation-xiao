@@ -15,14 +15,14 @@ const resulVO: ResultVO = {
   code: 200,
   data: {}
 };
-const course = { name: 'web框架', teacherNum: '2' }
-const schedule1 = { course: course, week: '1', day: '2', order: '3', state: false }
+const course = { courseId:'3',name: 'web框架', teacherNum: '100' }
+const schedule1 = { course: course, week: '1', order: '3',day: '2', state: false }
 const scheduleArr = [];
 const scheduleArr901 = [];
 for(let i = 1;i<19;i++){
   for(let j = 1;j<8;j++){
     for(let k = 1;k<6;k++){
-      scheduleArr901.push({week:i,day:j,order:k,state:true,course:'无'})
+      scheduleArr901.push({week:i,order:k,day:j,state:true,course:'无'})
       if(i==1&&j==2&&k==3){
         scheduleArr901.pop();
         scheduleArr901.push(schedule1);
@@ -33,10 +33,79 @@ for(let i = 1;i<19;i++){
 for(let i = 1;i<19;i++){
   for(let j = 1;j<8;j++){
     for(let k = 1;k<6;k++){
-      scheduleArr.push({week:i,day:j,order:k,state:true,course:'无'})
+      scheduleArr.push({week:i,order:k,day:j,state:true,course:'无'})
     }
   }
 }
+mock.onPost('updateCourses').reply(c=>{
+  const data =c.data;
+  if(data){
+    resulVO.data = data;
+    console.log("mock-updateleteCourses",data);
+    console.log("成功向updateleteCourses提交删除信息");
+    
+  return [200,resulVO]
+  }
+  resulVO.code = 401;
+  resulVO.message = "提交错误";
+  return [200, resulVO];
+})
+
+mock.onPost('deleteCourses').reply(c=>{
+  const data =c.data;
+  if(data){
+    resulVO.data = data;
+    console.log("mock-deleteCourses",data);
+    console.log("成功向deleteCourses提交删除信息");
+    
+  return [200,resulVO]
+  }
+  resulVO.code = 401;
+  resulVO.message = "提交错误";
+  return [200, resulVO];
+})
+
+mock.onPost('/addCourses').reply(c=>{
+  const data =c.data;
+  if(data){
+    resulVO.data = data;
+    console.log("mock-addCourses",data);
+    console.log("成功向addCourses提交新信息");
+    
+  return [200,resulVO]
+  }
+  resulVO.code = 401;
+  resulVO.message = "提交错误";
+  return [200, resulVO];
+})
+mock.onGet('/getCourses').reply(200,{
+  code:200,
+  data:{
+    courses:[
+      {
+        courseId: '1',
+        name: 'java程序设计',
+        teacherNum: 100,
+        studentNum: 50,
+        hours: 6,
+      },
+      {
+        courseId: '2',
+        name: 'C语言程序设计',
+        teacherNum: 100,
+        studentNum: 30,
+        hours: 6,
+      },
+      {
+        courseId: '2',
+        name: 'C语言程序设计',
+        teacherNum: 101,
+        studentNum: 50,
+        hours: 6,
+      }
+    ]
+  }
+})
 mock.onPost('deleteLabs').reply(c=>{
   const data =c.data;
   if(data){
@@ -157,7 +226,6 @@ mock.onPost('submitLablist').reply(c =>{
   const data = c.data;
   if(data){
     resulVO.data = data;
-    console.log("mock",data);
   return [200,resulVO]
   }
   
@@ -204,10 +272,23 @@ mock.onPost("login").reply(c => {
           "744193c872b677aab12a0ced447882f4cf9fca92a09d428a26ed145ed2ed2eec665c8824ebc353042ba2be136efcb5c6"
       }
     ];
+  };
+  if (number == "1002" && password == "1002") {
+    resulVO.code = 200;
+    resulVO.data = { role: "teacher",teacherNum:"101" };
+    resulVO.message = "";
+    return [
+      200,
+      resulVO,
+      {
+        token:
+          "744193c872b677aab12a0ced447882f4cf9fca92a09d428a26ed145ed2ed2eec665c8824ebc353042ba2be136efcb5c6"
+      }
+    ];
   }
   if (number == "1001" && password == "1001") {
     resulVO.code = 200;
-    resulVO.data = { role: "teacher" };
+    resulVO.data = { role: "teacher",teacherNum:"100" };
     resulVO.message = "";
     return [
       200,

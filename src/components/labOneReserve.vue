@@ -36,7 +36,7 @@ import { useStore } from "vuex";
 import { State } from "@/store";
 import { useRoute } from "vue-router"; //必须引入useRoute才能使用route
 import { ElMessage } from "element-plus";
-import { toRaw} from '@vue/reactivity'
+import { toRaw} from '@vue/reactivity';
 import { SUBMIT_LABLIST } from "@/store/VuexTypes";
 export default defineComponent({
   setup() {
@@ -80,7 +80,8 @@ export default defineComponent({
       }
     };
     const ApplyOrder = () => {
-      if(week.value && day.value && order.value){ store.state.labList!.forEach((lab) => {
+      if(week.value && day.value && order.value){
+        store.state.labList!.forEach((lab) => {
         if (labNum == lab.number) {
           lab.schedule.forEach((s: any) => {
             if (

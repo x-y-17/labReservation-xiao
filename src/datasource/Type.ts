@@ -2,7 +2,6 @@ export interface Teacher {
     name: string;
     title: string;
     number: string;
-    id?:string;
 }
 
 export interface Lab{
@@ -19,9 +18,11 @@ export interface Schedule{
 }
 
 export interface Course{
+    courseId: string;   //课程编号
     name: string;       //课程名称
     teacherNum: string; //教师编号
-    id?: string;
+    studentNum: string; //学生数量
+    hours: string;      //学时数
 }
 
 

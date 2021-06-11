@@ -11,7 +11,7 @@ process.env.NODE_ENV == "development" && require("@/mock/index");
 
 const app = createApp(App);
 const role = sessionStorage.getItem("role");
-app.use(ElementPlus)
+
 if (role) {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     if (role == 'admin') {
@@ -33,5 +33,6 @@ if (role) {
 function init() {
     app.use(store)
     app.use(router)
+    app.use(ElementPlus)
     app.mount("#app")
 }

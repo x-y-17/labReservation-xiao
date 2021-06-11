@@ -1,5 +1,5 @@
 <template>
-     <div class="rvwrap">
+    <div class="rvwrap">
     <div class="elmenu">
     <el-menu :default-active="this.$route.path" router mode="horizontal" class="elmenuinner">
       <el-menu-item
