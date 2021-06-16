@@ -30,36 +30,34 @@ export default defineComponent({
   },
   setup() {
     const store = useStore<State>();
-    console.log("labAdd",store.state.labList);
-    
+    console.log("labAdd", store.state.labList);
+
     const lab = ref({
       number: "",
       computerNumber: "",
     });
     const lablist = store.state.labList;
     const submit = () => {
-        let flag = true;
+      let flag = true;
       lablist?.forEach((l) => {
         if (lab.value.number == l.number) {
           flag = false;
-          alert("实验室编号重复，请重新输入")
+          alert("实验室编号重复，请重新输入");
         }
       });
       if (
-        (flag ==
-          true &&
-          typeof lab.value.number &&
-          typeof lab.value.computerNumber)
+        flag == true &&
+        typeof lab.value.number &&
+        typeof lab.value.computerNumber
       ) {
         store.commit(types.ADD_LAB, {
           number: lab.value.number,
           computerNumber: lab.value.computerNumber,
-          schedule:[],
+          schedule: [],
         } as Lab);
-        console.log("commit",lab);
-        
+        console.log("commit", lab);
       }
-      store.dispatch(types.ADD_LAB,lab.value);//发送新添加的lab信息
+      store.dispatch(types.ADD_LAB, lab.value); //发送新添加的lab信息
     };
     return {
       lab,

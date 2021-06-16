@@ -38,6 +38,8 @@ export default defineComponent({
       
     }
     const login = () => {
+      console.log("submit");
+      
       store.dispatch(BACKEND_LOGIN, user.value);
     };
     // watch(flag,(newValue,oldValue)=>{

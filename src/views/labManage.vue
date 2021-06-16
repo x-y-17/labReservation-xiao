@@ -1,18 +1,25 @@
 <template>
-    <div class="rvwrap">
+  <div class="rvwrap">
     <div class="elmenu">
-    <el-menu :default-active="this.$route.path" router mode="horizontal" class="elmenuinner">
-      <el-menu-item
-        v-for="(item, i) in labnavList"
-        :key="i"
-        :index="item.name"
+      <el-menu
+        :default-active="this.$route.path"
+        router
+        mode="horizontal"
+        background-color="#545c64"
+        text-color="#fff"
+        active-text-color="#ffd04b"
       >
-        {{ item.navItem }}
-      </el-menu-item>
-    </el-menu>
+        <el-menu-item
+          v-for="(item, i) in labnavList"
+          :key="i"
+          :index="item.name"
+        >
+          {{ item.navItem }}
+        </el-menu-item>
+      </el-menu>
     </div>
     <div class="rv2">
-       <router-view />
+      <router-view />
     </div>
   </div>
 </template>
@@ -41,5 +48,5 @@ export default defineComponent({
 </script>
 
 <style>
-  @import "../css/teacherManage.css";
+@import "../css/teacherManage.css";
 </style>

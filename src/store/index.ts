@@ -47,20 +47,24 @@ const myMutations = {
 
 const myActions: ActionTree<State, State> = {
   [types.BACKEND_LOGIN]: async ({ commit, state }, user: any) => {
-    const resp = await axios.post<ResultVO>("login", user);
+    console.log("进入axios，login");
+    
+    const resp = await axios.post<ResultVO>("/api/login", user);
+    console.log(resp);
+    
     const token: string = resp.headers.token;
     if (token) {
       sessionStorage.setItem("token", token);
       sessionStorage.setItem("role", resp.data.data.role);
-      if (resp.data.data.role == 'admin') {
+      if (resp.data.data.role == '9') {
         const { setUserRole } = await import("@/role/AdminRole")
         const menuList = setUserRole();
         commit(types.SET_MENULIST, menuList);
         state.isLogin = true;
         router.push("/main");
       }
-      if (resp.data.data.role == 'teacher') {
-        sessionStorage.setItem("teacherNum",resp.data.data.teacherNum);
+      if (resp.data.data.role == '5') {
+        sessionStorage.setItem("teacherNum",resp.data.data.tid);
         const { setUserRole } = await import("@/role/TeacherRole");
         const menuList = setUserRole();
         commit(types.SET_MENULIST, menuList);
@@ -86,10 +90,15 @@ const myActions: ActionTree<State, State> = {
   },//添加教师信息
   [types.GET_LABLIST]: async ({ commit }) => {
     // const resp = await axios.get("api/lablist");
-    const resp = await axios.get("lablist");
+    const resp = await axios.get("/api/common/labs");
     console.log("lablist",resp.data.data.labs);
     commit(types.GET_LABLIST, resp.data.data.labs); 
-  },
+  },//获取实验室列表
+  [types.ADD_LAB]: async({commit,state},lab:any)=>{
+    // const resp = await axios.post<ResultVO>("addLabs",lab);
+    const resp = await axios.post<ResultVO>("/api/admin/addLabs",lab);
+    console.log("add_lab",resp.data.data);
+  },//添加实验室
   [types.SUBMIT_LABLIST]: async ({state},labList: any)=>{
     const resp = await axios.post<ResultVO>("submitLablist",labList);
     if(resp.status ==200){
@@ -111,10 +120,6 @@ const myActions: ActionTree<State, State> = {
   [types.UPDATE_TEACHER_PASSWORD]: async ({commit},password:string)=>{
     const resp = await axios.post<ResultVO>("updateTeacherPassword",password);
     console.log("update_teacher_password",resp.data.data);
-  },
-  [types.ADD_LAB]: async({commit,state},lab:any)=>{
-    const resp = await axios.post<ResultVO>("addLabs",lab);
-    console.log("add_lab",resp.data.data);
   },
   [types.UPDATE_LAB]: async({state},lab:any)=>{
     const resp = await axios.post<ResultVO>("updateLabs",lab);

@@ -1,0 +1,106 @@
+@font-face {
+    font-family: "55";
+    src: url("../datasource/55.ttf");
+  }
+  .hwrap {
+      position: relative;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(300deg, 
+    #FFB6B9 0%, 
+    #FFB6B9 30%, 
+    #FAE3D9 calc(30% + 1px), 
+    #FAE3D9 45%, 
+    #BBDED6 calc(45% + 1px), 
+    #BBDED6 70%, 
+    #85ffbd calc(70% + 1px),
+     #85ffbd 100%);;
+   
+    // background-image: linear-gradient(
+    //   220deg,
+    //   #ff2525 0%,
+    //   #ff2525 35%,
+    //   #fff87d calc(35%+1px),
+    //   #fff87d 65%,
+    //   #85ffbd calc(65%+1px),
+    //   #85ffbd 100%
+    // );
+  }
+  div img {
+    width: 140px;
+    position: absolute;
+    height: 140px;
+    left: 10%;
+    border-radius: 50%;
+    margin-top: 10px;
+    transition: 1s;
+  }
+  div img:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+  .title {
+    position: absolute;
+    left: 20%;
+    font-size: 60px;
+    font-family: "55";
+    margin-top: 50px;
+
+  }
+.title span{
+    display: block;
+    color: rgb(160 152 152 / 50%);
+    background: linear-gradient(
+      120deg,
+      rgba(255, 255, 255, 0) 20px,
+      rgba(255, 255, 255, 1) 50px,
+      rgba(255, 255, 255, 0) 80px
+    );
+    background-repeat: no-repeat;
+    -webkit-background-clip: text;
+    animation: move 4s infinite;
+}  
+@keyframes move {
+    from {
+      background-position: 0px 0;
+    }
+    to {
+      background-position: 360px 0;
+    }
+  }
+  .text {
+    position: absolute;
+    width: 560px;
+    color: saddlebrown;
+    height: 110px;
+    left: 48%;
+    margin-top: 30px;
+  }
+  .text span {
+    display: block;
+    font-size: 55px;
+    padding-bottom: 10px;
+    font-family: "55";
+  }
+  .text span:nth-child(2) {
+    position: absolute;
+    left: 18%;
+  }
+  .btn{
+    position: absolute;
+    right:  10px;
+    bottom: 0;
+  }
+  .btn button{
+    color: saddlebrown;
+      font-size: 25px;
+      border: 0;
+        font-weight: bold;
+      background-color: transparent;
+      padding: 10px;
+      cursor: pointer;
+      transition: .5s;
+  }
+  .btn button:hover{
+      transform: scale(1.1);
+  }
