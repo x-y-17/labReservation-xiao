@@ -1,18 +1,23 @@
 <template>
   <div class="rvwrap">
     <div class="elmenu">
-    <el-menu :default-active="this.$route.path" router mode="horizontal" class="elmenuinner">
-      <el-menu-item
-        v-for="(item, i) in teachernavList"
-        :key="i"
-        :index="item.name"
+      <el-menu
+        :default-active="this.$route.path"
+        router
+        mode="horizontal"
+        class="elmenuinner"
       >
-        {{ item.navItem }}
-      </el-menu-item>
-    </el-menu>
+        <el-menu-item
+          v-for="(item, i) in teachernavList"
+          :key="i"
+          :index="item.name"
+        >
+          {{ item.navItem }}
+        </el-menu-item>
+      </el-menu>
     </div>
     <div class="rv2">
-       <router-view />
+      <router-view />
     </div>
   </div>
 </template>
@@ -20,6 +25,7 @@
 import { useStore } from "vuex";
 import { defineComponent, ref } from "vue";
 import { State } from "@/store";
+
 export default defineComponent({
   methods: {
     handleSelect(key: any, keyPath: any) {
@@ -45,5 +51,5 @@ export default defineComponent({
 </script>
 
 <style>
-  @import "../css/teacherManage.css";
+@import "../css/teacherManage.css";
 </style>

@@ -7,23 +7,12 @@
     <el-form-item label="教师职称">
       <el-input v-model="teacher.title"></el-input>
     </el-form-item>
-    <el-form-item label="密码">
+    <!-- <el-form-item label="密码">
       <el-input v-model="password"></el-input>
+    </el-form-item> -->
+    <el-form-item label="提交修改">
+      <el-button type="danger" @click="update" round>Submit</el-button>
     </el-form-item>
-    <label for="">提交修改</label>
-    <el-button
-      @click="update"
-      type="success"
-      icon="el-icon-check"
-      circle
-    ></el-button>
-    <label for="">返回教师列表</label>
-    <el-button
-      @click="back"
-      type="danger"
-      icon="el-icon-check"
-      circle
-    ></el-button>
   </el-form>
 </template>
 
@@ -59,11 +48,11 @@ export default defineComponent({
     });
     const update = () => {
       store.dispatch(types.UPDATE_TEACHER, teacher.value);
-      store.dispatch(types.UPDATE_TEACHER_PASSWORD, password.value);
+      // store.dispatch(types.UPDATE_TEACHER_PASSWORD, password.value);
     };
-    const back = () =>{
-      router.push("/teacherManage")
-    }
+    const back = () => {
+      router.push("/teacherManage");
+    };
     return {
       back,
       update,
@@ -73,3 +62,8 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+.el-input__inner {
+  width: 300px;
+}
+</style>

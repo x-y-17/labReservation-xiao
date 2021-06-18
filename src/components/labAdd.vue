@@ -1,5 +1,5 @@
 <template>
-  <el-form :label-position="labelPosition" label-width="80px" :model="teacher">
+  <el-form :label-position="labelPosition" label-width="120px" :model="teacher">
     <el-form-item label="实验室编号">
       <el-input v-model="lab.number"></el-input>
     </el-form-item>
@@ -7,12 +7,9 @@
     <el-form-item label="实验室机器数量">
       <el-input v-model="lab.computerNumber"></el-input>
     </el-form-item>
-    <el-button
-      @click="submit"
-      type="success"
-      icon="el-icon-check"
-      circle
-    ></el-button>
+    <el-form-item label="提交信息">
+      <el-button type="danger" @click="submit" round>Submit</el-button>
+    </el-form-item>
   </el-form>
 </template>
 
@@ -66,3 +63,8 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+.el-input__inner {
+  width: 300px;
+}
+</style>

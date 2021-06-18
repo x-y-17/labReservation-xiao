@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="tableData" style="width: 100%" max-height="250">
+  <el-table :data="tableData" style="width: 480px">
     <el-table-column
       prop="number"
       label="实验室编号"
@@ -8,11 +8,11 @@
     <el-table-column
       prop="computerNumber"
       label="实验室机器数量"
-      width="120"
+      width="140"
     ></el-table-column>
     <el-table-column fixed="right" label="操作" width="120">
       <template #default="scope">
-        <el-button @click="EditRow(scope.row.number)" type="text" size="small">
+        <el-button @click="EditRow(scope.row.number)" type="text" size="large">
           编辑
         </el-button>
       </template>
@@ -33,7 +33,7 @@ export default defineComponent({
       return store.state.labList;
     });
     console.log(tableData);
-    
+    store.dispatch(types.GET_LABLIST);
     const EditRow = (i: any) => {
       console.log(i);
       router.push({
@@ -48,3 +48,8 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped>
+.el-table {
+  font-size: 17px;
+}
+</style>

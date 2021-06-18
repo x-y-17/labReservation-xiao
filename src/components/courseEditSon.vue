@@ -8,19 +8,9 @@
       <el-input v-model="course.name"></el-input>
     </el-form-item>
     <label for="">提交修改</label>
-    <el-button
-      @click="update"
-      type="success"
-      icon="el-icon-check"
-      circle
-    ></el-button>
-    <label for="">返回实验室列表</label>
-    <el-button
-      @click="back"
-      type="danger"
-      icon="el-icon-check"
-      circle
-    ></el-button>
+    <el-form-item label="提交修改">
+      <el-button type="danger" @click="update" round>Submit</el-button>
+    </el-form-item>
   </el-form>
 </template>
 
@@ -75,3 +65,8 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+.el-input__inner {
+  width: 300px;
+}
+</style>

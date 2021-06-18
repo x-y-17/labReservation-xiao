@@ -6,10 +6,10 @@
       class="el-menu-vertical-demo"
       @open="handleOpen()"
       @close="handleClose()"
-      background-color="#545c64"
-      text-color="#fff"
-      active-text-color="#ffd04b"
-    ><!---  :default-active="$route.path" 想让它随着子路由变化仍然亮-->
+      text-color="#000"
+      active-text-color="rgb(255 0 0)"
+    >
+      <!---  :default-active="$route.path" 想让它随着子路由变化仍然亮-->
       <el-menu-item
         v-for="(m, mindex) in menuList.children"
         :key="mindex"
@@ -50,4 +50,3 @@ export default defineComponent({
 <style scoped>
 @import "../css/sidebar.css";
 </style>
-

@@ -2,9 +2,13 @@
   margin: 0;
   padding: 0;
 }
-.sbback {
-   background-color: #545c64;
-}
 .el-menu {
+  background-color: transparent;
   border: 0;
+}
+.el-menu-item {
+  font-size: 20px;
+}
+.sbback {
+  background-image: linear-gradient(100deg, #b5fffc, #ffdee9);
 }

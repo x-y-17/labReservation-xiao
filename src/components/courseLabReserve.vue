@@ -63,7 +63,7 @@ export default defineComponent({
     const options2 = [];
     const options3 = [];
     const state = ref(true);
-    const value1 = ref(false);
+    // const value1 = ref(false);
     const queryState = function () {
       store.state.labList!.forEach((lab) => {
         if (labNum == lab.number) {
@@ -119,7 +119,7 @@ export default defineComponent({
                     courseId == c.courseId &&
                     c.teacherNum == sessionStorage.getItem("teacherNum")
                   ) {
-                    toRaw(s).course = toRaw(c);
+                    toRaw(s).name = toRaw(c).name;
                   }
                 }); //循环课程列表找到根据该教师的编号和课程编号找到对应课程
               }

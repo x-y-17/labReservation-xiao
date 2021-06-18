@@ -1,5 +1,5 @@
 <template>
-  <el-form :label-position="labelPosition" label-width="80px" :model="teacher">
+  <el-form :label-position="labelPosition" label-width="120px" :model="teacher">
     <el-form-item label="实验室编号">
       <el-input v-model="lab.number" disabled></el-input>
     </el-form-item>
@@ -7,20 +7,10 @@
     <el-form-item label="实验室机器数量">
       <el-input v-model="lab.computerNumber"></el-input>
     </el-form-item>
-    <label for="">提交修改</label>
-    <el-button
-      @click="update"
-      type="success"
-      icon="el-icon-check"
-      circle
-    ></el-button>
-    <label for="">返回实验室列表</label>
-    <el-button
-      @click="back"
-      type="danger"
-      icon="el-icon-check"
-      circle
-    ></el-button>
+
+    <el-form-item label="提交修改">
+      <el-button type="danger" @click="update" round>Submit</el-button>
+    </el-form-item>
   </el-form>
 </template>
 
@@ -56,9 +46,9 @@ export default defineComponent({
     const update = () => {
       store.dispatch(types.UPDATE_LAB, lab.value);
     };
-    const back = () =>{
-      router.push("/labManage")
-    }
+    const back = () => {
+      router.push("/labManage");
+    };
     return {
       back,
       update,
@@ -68,3 +58,8 @@ export default defineComponent({
   },
 });
 </script>
+<style>
+.el-input__inner {
+  width: 300px;
+}
+</style>

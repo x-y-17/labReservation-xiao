@@ -13,7 +13,7 @@ export interface Schedule{
     course?: Course; //课程
     week ?: string;  //第几周
     day ?: string;   //星期几
-    order ?: string; //哪节课（每天5节课）
+    section ?: string; //哪节课（每天5节课）
     state : boolean;//是否被占用
 }
 

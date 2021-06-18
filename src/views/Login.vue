@@ -12,7 +12,7 @@
         <input type="password" v-model="user.password" />
         <label>Password</label>
       </div>
-      <a @click="login()" >
+      <a @click="login()">
         <span></span>
         <span></span>
         <span></span>
@@ -33,13 +33,9 @@ export default defineComponent({
   setup() {
     const user = ref({ number: "", password: "" });
     const store = useStore<State>();
-    const enter = ()=>{
-      console.log("enter");
-      
-    }
     const login = () => {
       console.log("submit");
-      
+
       store.dispatch(BACKEND_LOGIN, user.value);
     };
     // watch(flag,(newValue,oldValue)=>{
@@ -50,7 +46,6 @@ export default defineComponent({
     //   }
     // })
     return {
-      enter,
       user,
       login,
     };

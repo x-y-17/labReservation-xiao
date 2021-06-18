@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="tableData" style="width: 100%" max-height="250">
+  <el-table :data="tableData" style="width: 720px">
     <el-table-column
       prop="courseId"
       label="课程编号"
@@ -12,21 +12,21 @@
       width="120"
     ></el-table-column>
     <el-table-column prop="hours" label="学时数" width="120"></el-table-column>
-    <el-table-column fixed="right" label="操作" width="120">
+    <el-table-column label="操作" width="120">
       <template #default="scope">
         <el-button
           @click="EditRow(scope.row.courseId)"
           type="text"
-          size="small"
+          size="large"
         >
-          编辑
+          <span style="font-size: 17px">修改</span>
         </el-button>
       </template>
     </el-table-column>
-    <el-table-column fixed="right" label="操作" width="120">
+    <el-table-column label="操作" width="120">
       <template #default="scope">
         <el-button @click="CourseReserve(scope)" type="text" size="small">
-          课程实验室预约
+          <span style="font-size: 17px">课程实验室预约</span>
         </el-button>
       </template>
     </el-table-column>
@@ -46,7 +46,7 @@ export default defineComponent({
     const tableData = computed(() => {
       return store.state.courses;
     });
-    console.log(tableData);
+    console.log("tableData", store.state.courses);
 
     const EditRow = (i: any) => {
       console.log(i);
@@ -59,7 +59,7 @@ export default defineComponent({
       const row = toRaw(i.row); //将Proxy代理对象转换为源对象
       router.push({
         path: "/courseManage/courseLabList",
-        query: { studentNum: row.studentNum,courseId: row.courseId },
+        query: { studentNum: row.studentNum, courseId: row.courseId },
       });
     };
     return {
@@ -70,3 +70,8 @@ export default defineComponent({
   },
 });
 </script>
+<style scoped>
+.el-table {
+  font-size: 17px;
+}
+</style>

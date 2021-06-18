@@ -20,10 +20,10 @@ export default defineComponent({
   setup() {
     const store = useStore();
     store.dispatch(types.GET_LABLIST);
-    if (sessionStorage.getItem("role") == "admin") {
+    if (sessionStorage.getItem("role") == "9") {
       store.dispatch(types.GET_TEACHERS);
     }
-    if(sessionStorage.getItem("role") == "teacher"){
+    if (sessionStorage.getItem("role") == "5") {
       store.dispatch(types.GET_COURSES);
     }
     console.log("Main", store.state.labList);

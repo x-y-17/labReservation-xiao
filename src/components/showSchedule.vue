@@ -5,9 +5,8 @@
       :data="tableData1"
       :row-class-name="tableRowClassName"
     >
-      <el-table-column prop="day" label="" width="180"></el-table-column>
+      <el-table-column prop="day" label="" width="180px"></el-table-column>
     </el-table>
-
     <el-table
       class="class"
       :data="tableData"
@@ -138,284 +137,138 @@ export default defineComponent({
       if (w.week == week) {
         //找到所查询的那周
         // console.log("worder", w.order, "wday", w.day, "wcourse", w.course);
-        c.order = w.order;
+        c.order = w.section;
         c.day = w.day;
         c.course = w.course;
         if (w.day == 1) {
-          if (w.order == 1) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t1.value.order1 = w.course.name;
-            } else {
-              t1.value.order1 = w.course;
-            }
+          if (w.section == 1) {
+            t1.value.order1 = w.name;
           }
-          if (w.order == 2) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t1.value.order2 = w.course.name;
-            } else {
-              t1.value.order2 = w.course;
-            }
+          if (w.section == 2) {
+            t1.value.order2 = w.name;
           }
-          if (w.order == 3) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t1.value.order3 = w.course.name;
-            } else {
-              t1.value.order3 = w.course;
-            }
+          if (w.section == 3) {
+            t1.value.order3 = w.name;
           }
-          if (w.order == 4) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t1.value.order4 = w.course.name;
-            } else {
-              t1.value.order4 = w.course;
-            }
+          if (w.section == 4) {
+            t1.value.order4 = w.name;
           }
-          if (w.order == 5) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t1.value.order5 = w.course.name;
-            } else {
-              t1.value.order5 = w.course;
-            }
-            console.log(t1.value);
+          if (w.section == 5) {
+            t1.value.order5 = w.name;
             tableData.push(t1.value);
             console.log("day1", tableData);
           }
         }
         if (w.day == 2) {
-          if (w.order == 1) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t2.value.order1 = w.course.name;
-            } else {
-              t2.value.order1 = w.course;
-            }
+          if (w.section == 1) {
+            t2.value.order1 = w.name;
           }
-          if (w.order == 2) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t2.value.order2 = w.course.name;
-            } else {
-              t2.value.order2 = w.course;
-            }
+          if (w.section == 2) {
+            t2.value.order2 = w.name;
           }
-          if (w.order == 3) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t2.value.order3 = w.course.name;
-            } else {
-              t2.value.order3 = w.course;
-            }
+          if (w.section == 3) {
+            t2.value.order3 = w.name;
           }
-          if (w.order == 4) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t2.value.order4 = w.course.name;
-            } else {
-              t2.value.order4 = w.course;
-            }
+          if (w.section == 4) {
+            t2.value.order4 = w.name;
           }
-          if (w.order == 5) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t2.value.order5 = w.course.name;
-            } else {
-              t2.value.order5 = w.course;
-            }
-            console.log(t2.value);
+          if (w.section == 5) {
+            t2.value.order5 = w.name;
             tableData.push(t2.value);
             console.log("day2", tableData);
           }
         }
         if (w.day == 3) {
-          if (w.order == 1) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t3.value.order1 = w.course.name;
-            } else {
-              t3.value.order1 = w.course;
-            }
+          if (w.section == 1) {
+            t3.value.order1 = w.name;
           }
-          if (w.order == 2) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t3.value.order2 = w.course.name;
-            } else {
-              t3.value.order2 = w.course;
-            }
+          if (w.section == 2) {
+            t3.value.order2 = w.name;
           }
-          if (w.order == 3) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t3.value.order3 = w.course.name;
-            } else {
-              t3.value.order3 = w.course;
-            }
+          if (w.section == 3) {
+            t3.value.order3 = w.name;
           }
-          if (w.order == 4) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t3.value.order4 = w.course.name;
-            } else {
-              t3.value.order4 = w.course;
-            }
+          if (w.section == 4) {
+            t3.value.order4 = w.name;
           }
-          if (w.order == 5) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t3.value.order5 = w.course.name;
-            } else {
-              t3.value.order5 = w.course;
-            }
-            console.log(t3.value);
+          if (w.section == 5) {
+            t3.value.order5 = w.name;
             tableData.push(t3.value);
             console.log("day3", tableData);
           }
         }
         if (w.day == 4) {
-          if (w.order == 1) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t4.value.order1 = w.course.name;
-            } else {
-              t4.value.order1 = w.course;
-            }
+          if (w.section == 1) {
+            t4.value.order1 = w.name;
           }
-          if (w.order == 2) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t4.value.order2 = w.course.name;
-            } else {
-              t4.value.order2 = w.course;
-            }
+          if (w.section == 2) {
+            t4.value.order2 = w.name;
           }
-          if (w.order == 3) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t4.value.order3 = w.course.name;
-            } else {
-              t4.value.order3 = w.course;
-            }
+          if (w.section == 3) {
+            t4.value.order3 = w.name;
           }
-          if (w.order == 4) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t4.value.order4 = w.course.name;
-            } else {
-              t4.value.order4 = w.course;
-            }
+          if (w.section == 4) {
+            t4.value.order4 = w.name;
           }
-          if (w.order == 5) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t4.value.order5 = w.course.name;
-            } else {
-              t4.value.order5 = w.course;
-            }
-            console.log(t4.value);
+          if (w.section == 5) {
+            t4.value.order5 = w.name;
             tableData.push(t4.value);
             console.log("day4", tableData);
           }
         }
         if (w.day == 5) {
-          if (w.order == 1) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t5.value.order1 = w.course.name;
-            } else {
-              t5.value.order1 = w.course;
-            }
+          if (w.section == 1) {
+            t5.value.order1 = w.name;
           }
-          if (w.order == 2) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t5.value.order2 = w.course.name;
-            } else {
-              t5.value.order2 = w.course;
-            }
+          if (w.section == 2) {
+            t5.value.order2 = w.name;
           }
-          if (w.order == 3) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t5.value.order3 = w.course.name;
-            } else {
-              t5.value.order3 = w.course;
-            }
+          if (w.section == 3) {
+            t5.value.order3 = w.name;
           }
-          if (w.order == 4) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t5.value.order4 = w.course.name;
-            } else {
-              t5.value.order4 = w.course;
-            }
+          if (w.section == 4) {
+            t5.value.order4 = w.name;
           }
-          if (w.order == 5) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t5.value.order5 = w.course.name;
-            } else {
-              t5.value.order5 = w.course;
-            }
-            console.log(t5.value);
+          if (w.section == 5) {
+            t5.value.order5 = w.name;
             tableData.push(t5.value);
             console.log("day5", tableData);
           }
         }
         if (w.day == 6) {
-          if (w.order == 1) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t6.value.order1 = w.course.name;
-            } else {
-              t6.value.order1 = w.course;
-            }
+          if (w.section == 1) {
+            t6.value.order1 = w.name;
           }
-          if (w.order == 2) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t6.value.order2 = w.course.name;
-            } else {
-              t6.value.order2 = w.course;
-            }
+          if (w.section == 2) {
+            t6.value.order2 = w.name;
           }
-          if (w.order == 3) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t6.value.order3 = w.course.name;
-            } else {
-              t6.value.order3 = w.course;
-            }
+          if (w.section == 3) {
+            t6.value.order3 = w.name;
           }
-          if (w.order == 4) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t6.value.order4 = w.course.name;
-            } else {
-              t6.value.order4 = w.course;
-            }
+          if (w.section == 4) {
+            t6.value.order4 = w.name;
           }
-          if (w.order == 5) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t6.value.order5 = w.course.name;
-            } else {
-              t6.value.order5 = w.course;
-            }
-            console.log(t6.value);
+          if (w.section == 5) {
+            t6.value.order5 = w.name;
             tableData.push(t6.value);
             console.log("day6", tableData);
           }
         }
         if (w.day == 7) {
-          if (w.order == 1) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t7.value.order1 = w.course.name;
-            } else {
-              t7.value.order1 = w.course;
-            }
+          if (w.section == 1) {
+            t7.value.order1 = w.name;
           }
-          if (w.order == 2) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t7.value.order2 = w.course.name;
-            } else {
-              t7.value.order2 = w.course;
-            }
+          if (w.section == 2) {
+            t7.value.order2 = w.name;
           }
-          if (w.order == 3) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t7.value.order3 = w.course.name;
-            } else {
-              t7.value.order3 = w.course;
-            }
+          if (w.section == 3) {
+            t7.value.order3 = w.name;
           }
-          if (w.order == 4) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t7.value.order4 = w.course.name;
-            } else {
-              t7.value.order4 = w.course;
-            }
+          if (w.section == 4) {
+            t7.value.order4 = w.name;
           }
-          if (w.order == 5) {
-            if (w.course != "无" && w.course != "临时预约") {
-              t7.value.order5 = w.course.name;
-            } else {
-              t7.value.order5 = w.course;
-            }
+          if (w.section == 5) {
+            t7.value.order5 = w.name;
             console.log(t7.value);
             tableData.push(t7.value);
             console.log("day7", tableData);
@@ -436,11 +289,21 @@ export default defineComponent({
 <style scoped>
 .scheMain {
   display: flex;
+  width: 1084px;
+  margin-left: 30px;
+  margin-top: 40px;
+  border: 2px solid #b5b8be;
+  border-top: 2px solid #b5b8be;
+  border-bottom: 2px solid #b5b8be;
+  box-shadow: 6px 6px 5px rgb(82, 79, 79);
 }
 .order {
+  margin-top: 1px;
   width: 180px;
+  font-size: 18px;
 }
 .class {
   flex: 1;
+ margin-top: 2px;
 }
 </style>

@@ -5,9 +5,7 @@
         :default-active="this.$route.path"
         router
         mode="horizontal"
-        background-color="#545c64"
-        text-color="#fff"
-        active-text-color="#ffd04b"
+        class="elmenuinner"
       >
         <el-menu-item
           v-for="(item, i) in labnavList"

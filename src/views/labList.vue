@@ -1,6 +1,6 @@
 <template>
   <div class="lablistwrap">
-    <el-table :data="tableData" style="width: 100%" max-height="250">
+    <el-table :data="tableData" style="width: 540px">
       <el-table-column
         prop="number"
         label="实验室编号"
@@ -11,10 +11,10 @@
         label="机器数量"
         width="120"
       ></el-table-column>
-      <el-table-column label="操作" width="120">
+      <el-table-column label="预约" width="120">
         <template #default="scope">
-          <el-button @click="OneReserve(scope)" type="text" size="small">
-            单节预约
+          <el-button @click="OneReserve(scope)" type="text" size="large">
+            <span style="font-size: 17px">单节预约</span>
           </el-button>
         </template>
       </el-table-column>
@@ -29,7 +29,7 @@
               labNum = scope.row.number;
             "
           >
-            查询
+            <span style="font-size: 17px">查询</span>
           </el-button>
         </template>
       </el-table-column>
@@ -53,7 +53,7 @@ export default defineComponent({
     const options = [];
     const labNum = ref();
     const weekInput = ref();
-
+    store.dispatch(types.GET_LABLIST);
     const open = () => {
       ElMessageBox.prompt(
         "请输入要查询第几周的课表",
@@ -128,7 +128,7 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-.el-table::before {
-  z-index: 0;
+.el-table {
+  font-size: 17px;
 }
 </style>
