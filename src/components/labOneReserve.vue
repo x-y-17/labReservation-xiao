@@ -97,18 +97,18 @@ export default defineComponent({
         store.state.labList!.forEach((lab) => {
           if (labNum == lab.number) {
             lab.schedule.forEach((s: any) => {
-              console.log("s", s);
-
+              toRaw(s).teacherId = sessionStorage.getItem("teacherNum");
               if (
                 s.week == time.week &&
                 s.day == time.day &&
                 s.section == time.section
               ) {
+                console.log("wds", s.week, s.day, s.section);
+
                 state.value = false;
-                toRaw(s).state = false;
+                toRaw(s).state = 0;
                 toRaw(s).name = "临时预约";
-                console.log("提交预约申请后", store.state.labList);
-                store.dispatch(SUBMIT_LABLIST, store.state.labList);
+                toRaw(s).labId = labNum;
                 ElMessage.success({
                   message: "预约成功！",
                   type: "success",
@@ -116,6 +116,14 @@ export default defineComponent({
                 // alert("预约成功")
               }
             });
+          }
+        });
+        console.log("提交预约申请后", store.state.labList);
+        store.state.labList?.forEach((lab) => {
+          if (lab.number == labNum) {
+            const tmplab = toRaw(lab);
+            console.log("lab", toRaw(lab));
+            store.dispatch(SUBMIT_LABLIST, tmplab);
           }
         });
       } else {
@@ -156,7 +164,7 @@ export default defineComponent({
 });
 </script>
 <style scoped>
-.labOne{
+.labOne {
   margin-top: 15px;
   margin-left: 10px;
 }

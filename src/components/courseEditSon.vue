@@ -1,13 +1,18 @@
 <template>
   <el-form :label-position="labelPosition" label-width="80px" :model="teacher">
     <el-form-item label="课程编号">
-      <el-input v-model="course.courseId"></el-input>
+      <el-input v-model="course.cid"></el-input>
     </el-form-item>
     <br />
     <el-form-item label="课程名称">
       <el-input v-model="course.name"></el-input>
     </el-form-item>
-    <label for="">提交修改</label>
+    <el-form-item label="学生数量">
+      <el-input v-model="course.studentNumber"></el-input>
+    </el-form-item>
+    <el-form-item label="学时数">
+      <el-input v-model="course.hours"></el-input>
+    </el-form-item>
     <el-form-item label="提交修改">
       <el-button type="danger" @click="update" round>Submit</el-button>
     </el-form-item>
@@ -33,21 +38,26 @@ export default defineComponent({
       return store.state.courses;
     });
     const course = ref({
-      courseId: "",
+      cid: "",
       name: "",
-      studentNum: "",
+      studentNumber: "",
       hours: "",
+      teacherId: "",
     });
+    const tid = sessionStorage.getItem("teacherNum");
     const route = useRoute();
     const router = useRouter();
     const password = ref("");
     const courseId = route.query.courseId;
     courses.value?.forEach((c) => {
       if (c.courseId == courseId) {
-        course.value.courseId = c.courseId;
+        course.value.cid = c.courseId;
         course.value.name = c.name;
-        course.value.studentNum = c.studentNum;
+        course.value.studentNumber = c.studentNum;
         course.value.hours = c.hours;
+        if (tid) {
+          course.value.teacherId = tid;
+        }
       }
     });
     const update = () => {

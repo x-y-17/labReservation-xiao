@@ -29,7 +29,10 @@ export default defineComponent({
     const store = useStore<State>();
     const tableData = store.state.labList;
     const EditRow = (number: any) => {
-      store.dispatch(types.DELETE_LAB, number);
+      const lab = {
+        number: number,
+      };
+      store.dispatch(types.DELETE_LAB, lab);
     };
     return {
       EditRow,

@@ -45,14 +45,18 @@
 import { defineComponent, ref } from "vue";
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
+import { State } from "@/store";
+import * as types from "@/store/VuexTypes";
 
 export default defineComponent({
   setup() {
+    const store = useStore<State>();
     const route = useRoute();
+    store.dispatch(types.GET_LABLIST);
+    console.log("show",store.state.labList);
     const labNum = route.query.labNum;
     const week = route.query.weekInput;
     console.log(labNum, week);
-    const store = useStore();
     let weekSchedule: any = [];
     const tableData1 = [
       { day: "星期一" },
@@ -127,7 +131,7 @@ export default defineComponent({
       order5: "5",
     });
     let c = { order: "", day: "", course: "" };
-    store.state.labList.forEach((lab: any) => {
+    store.state.labList!.forEach((lab: any) => {
       if (lab.number == labNum) {
         weekSchedule = lab.schedule;
       }
@@ -304,6 +308,6 @@ export default defineComponent({
 }
 .class {
   flex: 1;
- margin-top: 2px;
+  margin-top: 2px;
 }
 </style>

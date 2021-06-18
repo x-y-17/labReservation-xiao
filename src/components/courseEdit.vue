@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="tableData" style="width: 720px">
+  <el-table :data="tableData" style="width: 750px">
     <el-table-column
       prop="courseId"
       label="课程编号"
@@ -23,9 +23,9 @@
         </el-button>
       </template>
     </el-table-column>
-    <el-table-column label="操作" width="120">
+    <el-table-column label="操作" width="150">
       <template #default="scope">
-        <el-button @click="CourseReserve(scope)" type="text" size="small">
+        <el-button @click="CourseReserve(scope)" type="text" size="large">
           <span style="font-size: 17px">课程实验室预约</span>
         </el-button>
       </template>
@@ -43,6 +43,7 @@ export default defineComponent({
   setup() {
     const store = useStore<State>();
     const router = useRouter();
+    store.dispatch(types.GET_COURSES);
     const tableData = computed(() => {
       return store.state.courses;
     });

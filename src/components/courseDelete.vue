@@ -14,11 +14,7 @@
     <el-table-column prop="hours" label="学时数" width="120"></el-table-column>
     <el-table-column label="操作" width="120">
       <template #default="scope">
-        <el-button
-          @click="EditRow(scope.row.courseId)"
-          type="text"
-          size="large"
-        >
+        <el-button @click="EditRow(scope.row)" type="text" size="large">
           <span style="font-size: 17px">删除</span>
         </el-button>
       </template>
@@ -33,9 +29,14 @@ import * as types from "@/store/VuexTypes";
 export default defineComponent({
   setup() {
     const store = useStore<State>();
+    store.dispatch(types.GET_COURSES);
     const tableData = store.state.courses;
-    const EditRow = (number: any) => {
-      store.dispatch(types.DELETE_COURSE, number);
+    const EditRow = (row: any) => {
+      const course = {
+        name: row.name,
+      };
+
+      store.dispatch(types.DELETE_COURSE, course);
     };
     return {
       EditRow,

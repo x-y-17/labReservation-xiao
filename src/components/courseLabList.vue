@@ -1,5 +1,5 @@
 <template>
-  <el-table :data="tableData" style="width: 480px">
+  <el-table :data="tableData" style="width: 360px">
     <el-table-column
       prop="number"
       label="实验室编号"

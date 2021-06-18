@@ -1,14 +1,14 @@
 <template>
   <el-form :label-position="labelPosition" label-width="80px" :model="teacher">
     <el-form-item label="课程编号">
-      <el-input v-model="course.courseId"></el-input>
+      <el-input v-model="course.cid"></el-input>
     </el-form-item>
     <br />
     <el-form-item label="课程名称">
       <el-input v-model="course.name"></el-input>
     </el-form-item>
     <el-form-item label="学生数量">
-      <el-input v-model="course.studentNum"></el-input>
+      <el-input v-model="course.studentNumber"></el-input>
     </el-form-item>
     <el-form-item label="学时数">
       <el-input v-model="course.hours"></el-input>
@@ -34,7 +34,7 @@ export default defineComponent({
   setup() {
     const store = useStore<State>();
     const course = ref({
-      id: "",
+      cid: "",
       name: "",
       studentNumber: "",
       hours: "",
@@ -46,14 +46,17 @@ export default defineComponent({
       if (
         flag == true &&
         course.value.name &&
-        course.value.id &&
+        course.value.cid &&
         course.value.studentNumber &&
         course.value.hours
       ) {
+        console.log("submit");
         if (tid) {
           course.value.teacherId = tid;
         }
         store.dispatch(types.ADD_COURSE, course.value); //发送新添加的lab信息
+      } else {
+        alert("请输入完整信息");
       }
     };
     return {

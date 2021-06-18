@@ -120,7 +120,11 @@ const myActions: ActionTree<State, State> = {
     console.log("add_lab", resp.data.data);
   },//添加实验室
   [types.SUBMIT_LABLIST]: async ({ state }, labList: any) => {
-    const resp = await axios.post<ResultVO>("submitLablist", labList);
+    console.log("submit_lablist");
+    
+    const resp = await axios.post<ResultVO>("/api/teacher/orderlab", labList);
+    console.log(resp);
+    
     if (resp.status == 200) {
       alert("预约成功")
     }
@@ -131,11 +135,11 @@ const myActions: ActionTree<State, State> = {
     console.log("update_teacher_password", resp.data.data);
   },
   [types.UPDATE_LAB]: async ({ state }, lab: any) => {
-    const resp = await axios.post<ResultVO>("updateLabs", lab);
+    const resp = await axios.post<ResultVO>("/api/admin/updatelab", lab);
     console.log("updateLabs", resp.data.data);
   },
   [types.DELETE_LAB]: async ({ state }, number: any) => {
-    const resp = await axios.post("deleteLabs", number);
+    const resp = await axios.post("/api/admin/deletelab", number);
     if (resp.status == 200) {
       alert("删除成功")
     }
@@ -143,32 +147,36 @@ const myActions: ActionTree<State, State> = {
   [types.GET_COURSES]: async ({ commit }, courses: Course[]) => {
     const resp = await axios.get('/api/teacher/courses');
     const courseList: Course[] = [];
-    const teacherNum = sessionStorage.getItem('teacherNum');//获取sessionStorage中的教师编号
     console.log("/getCourses", resp.data.data.courses);
     resp.data.data.courses.forEach((c: any) => {
-      if (c.teacherNum == teacherNum) {
-        courseList.push(c)
-      }
+        const tmpcourse:Course = {
+          name : c.name,
+          courseId : c.cid,
+          studentNum : c.studentNumber,
+          hours : c.hours,
+          teacherNum : sessionStorage.getItem('teacherNum')?.toString()
+        }
+        courseList.push(tmpcourse);
     });
     courses = courseList;
     console.log("courses:", courses);
     commit(types.GET_COURSES, courses);
   },
   [types.ADD_COURSE]: async ({ commit }, course: any) => {
-    const resp = await axios.post<ResultVO>("/api/teacher/courses", course);
+    const resp = await axios.post<ResultVO>("/api/teacher/addcourses", course);
     if (resp.status == 200) {
       alert("添加成功")
     }
     console.log("add_course", resp.data.data);
   },
-  [types.DELETE_COURSE]: async ({ state }, number: any) => {
-    const resp = await axios.post("deleteCourses", number)
+  [types.DELETE_COURSE]: async ({ state }, course : any) => {
+    const resp = await axios.post("/api/teacher/deletecourses", course)
     if (resp.status == 200) {
       alert("删除成功")
     }
   },
   [types.UPDATE_COURSE]: async ({ state }, course: Course) => {
-    const resp = await axios.post<ResultVO>("updateCourses", course);
+    const resp = await axios.post<ResultVO>("/api/teacher/updatecourse", course);
     console.log("updateCourses", resp.data.data);
   }
 }

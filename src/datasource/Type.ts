@@ -15,12 +15,14 @@ export interface Schedule{
     day ?: string;   //星期几
     section ?: string; //哪节课（每天5节课）
     state : boolean;//是否被占用
+    labId ?: number;
+    teacherId ?: string;
 }
 
 export interface Course{
-    courseId: string;   //课程编号
+    courseId?: string;   //课程编号
     name: string;       //课程名称
-    teacherNum: string; //教师编号
+    teacherNum?: string; //教师编号
     studentNum: string; //学生数量
     hours: string;      //学时数
 }
